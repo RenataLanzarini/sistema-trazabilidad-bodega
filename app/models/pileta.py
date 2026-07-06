@@ -63,3 +63,6 @@ class Pileta(Base):
     analisis_enologicos: Mapped[list["AnalisisEnologico"]] = relationship(
         back_populates="pileta"
     )
+    mediciones_fermentacion: Mapped[list["MedicionFermentacion"]] = relationship(
+        back_populates="pileta"
+    )

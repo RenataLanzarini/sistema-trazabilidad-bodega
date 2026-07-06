@@ -9,6 +9,7 @@ from app.models.estado_lote import EstadoLote
 from app.models.fraccionamiento import Fraccionamiento
 from app.models.fraccionamiento_detalle import FraccionamientoDetalle
 from app.models.lote import Lote
+from app.models.medicion_fermentacion import MedicionFermentacion
 from app.models.merma import Merma
 from app.models.movimiento_fisico import MovimientoFisico
 from app.models.operacion_productiva import OperacionProductiva
@@ -37,6 +38,7 @@ __all__ = [
     "Fraccionamiento",
     "FraccionamientoDetalle",
     "Lote",
+    "MedicionFermentacion",
     "Merma",
     "MovimientoFisico",
     "OperacionProductiva",

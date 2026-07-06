@@ -40,6 +40,9 @@ class Bodega(Base):
     analisis_enologicos: Mapped[list["AnalisisEnologico"]] = relationship(
         back_populates="bodega"
     )
+    mediciones_fermentacion: Mapped[list["MedicionFermentacion"]] = relationship(
+        back_populates="bodega"
+    )
     operaciones_productivas: Mapped[list["OperacionProductiva"]] = relationship(
         back_populates="bodega"
     )
