@@ -44,3 +44,6 @@ class Usuario(Base):
         back_populates="responsable"
     )
     mermas: Mapped[list["Merma"]] = relationship(back_populates="responsable")
+    fraccionamientos: Mapped[list["Fraccionamiento"]] = relationship(
+        back_populates="responsable"
+    )

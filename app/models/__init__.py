@@ -4,6 +4,8 @@ from app.models.cliente import Cliente
 from app.models.deposito import Deposito
 from app.models.estado_pileta import EstadoPileta
 from app.models.estado_lote import EstadoLote
+from app.models.fraccionamiento import Fraccionamiento
+from app.models.fraccionamiento_detalle import FraccionamientoDetalle
 from app.models.lote import Lote
 from app.models.merma import Merma
 from app.models.movimiento_fisico import MovimientoFisico
@@ -25,6 +27,8 @@ __all__ = [
     "Deposito",
     "EstadoPileta",
     "EstadoLote",
+    "Fraccionamiento",
+    "FraccionamientoDetalle",
     "Lote",
     "Merma",
     "MovimientoFisico",

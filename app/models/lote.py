@@ -61,3 +61,6 @@ class Lote(Base):
         foreign_keys="RelacionGenealogicaLote.lote_hijo_id",
     )
     mermas: Mapped[list["Merma"]] = relationship(back_populates="lote")
+    fraccionamiento_detalles: Mapped[list["FraccionamientoDetalle"]] = relationship(
+        back_populates="lote"
+    )

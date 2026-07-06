@@ -51,3 +51,6 @@ class OperacionProductiva(Base):
         back_populates="operacion_productiva"
     )
     mermas: Mapped[list["Merma"]] = relationship(back_populates="operacion_productiva")
+    fraccionamientos: Mapped[list["Fraccionamiento"]] = relationship(
+        back_populates="operacion_productiva"
+    )
