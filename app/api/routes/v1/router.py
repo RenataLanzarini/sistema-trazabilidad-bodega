@@ -4,6 +4,7 @@ from app.api.routes.v1 import (
     catalogos,
     health,
     lotes,
+    movimientos_fisicos,
     operaciones_productivas,
     piletas,
     recepciones_uva,
@@ -21,3 +22,4 @@ router.include_router(piletas.router)
 router.include_router(stock.router)
 router.include_router(trazabilidad.router)
 router.include_router(operaciones_productivas.router)
+router.include_router(movimientos_fisicos.router)
