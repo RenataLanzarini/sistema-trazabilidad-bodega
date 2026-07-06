@@ -13,6 +13,7 @@ from app.api.routes.v1 import (
     recepciones_uva,
     stock,
     trazabilidad,
+    ventas_granel,
 )
 
 
@@ -29,3 +30,4 @@ router.include_router(movimientos_fisicos.router)
 router.include_router(mermas.router)
 router.include_router(fraccionamientos.router)
 router.include_router(productos_terminados.router)
+router.include_router(ventas_granel.router)
