@@ -149,6 +149,8 @@ activemq-data/
 
 # Environments
 .env
+.env.*
+!.env.example
 .envrc
 .venv
 env/
@@ -205,6 +207,14 @@ tempCodeRunnerFile.py
 
 # Ruff stuff:
 .ruff_cache/
+
+# Project local files
+logs/
+*.local
+docker-compose.override.yml
+
+# Alembic local artifacts
+alembic/versions/*.pyc
 
 # PyPI configuration file
 .pypirc

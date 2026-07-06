@@ -1,19 +1,19 @@
 from datetime import datetime
 
 from sqlalchemy import DateTime, String, UniqueConstraint, func
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column
 
 from app.database.base import Base
 
 
-class Rol(Base):
-    """Catalogo de perfiles de usuario del sistema."""
+class TipoOperacion(Base):
+    """Catalogo de tipos de operaciones productivas."""
 
-    __tablename__ = "roles"
-    __table_args__ = (UniqueConstraint("nombre", name="uq_roles_nombre"),)
+    __tablename__ = "tipos_operacion"
+    __table_args__ = (UniqueConstraint("nombre", name="uq_tipos_operacion_nombre"),)
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    nombre: Mapped[str] = mapped_column(String(80), nullable=False)
+    nombre: Mapped[str] = mapped_column(String(100), nullable=False)
     descripcion: Mapped[str | None] = mapped_column(String(255), nullable=True)
     activo: Mapped[bool] = mapped_column(default=True, nullable=False)
 
@@ -26,5 +26,3 @@ class Rol(Base):
         onupdate=func.now(),
         nullable=False,
     )
-
-    usuarios: Mapped[list["Usuario"]] = relationship(back_populates="rol")

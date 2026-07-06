@@ -1,0 +1,45 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: trazabilidad_api
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./app:/app/app
+      - ./alembic:/app/alembic
+      - ./alembic.ini:/app/alembic.ini
+    networks:
+      - trazabilidad_network
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: trazabilidad_postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-trazabilidad}
+      POSTGRES_USER: ${POSTGRES_USER:-trazabilidad}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-trazabilidad}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-trazabilidad} -d ${POSTGRES_DB:-trazabilidad}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - trazabilidad_network
+
+networks:
+  trazabilidad_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
