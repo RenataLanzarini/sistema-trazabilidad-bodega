@@ -41,6 +41,10 @@ class MermaService:
         fecha: datetime,
         observaciones: str | None = None,
     ) -> Merma:
+        self.stock_service.bloquear_stock_operacion(
+            lote_id,
+            pileta_origen_id=pileta_id,
+        )
         self._validar_merma(
             operacion_productiva_id=operacion_productiva_id,
             lote_id=lote_id,

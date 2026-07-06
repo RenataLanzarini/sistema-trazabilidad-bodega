@@ -40,6 +40,11 @@ class MovimientoFisicoService:
         observaciones: str | None = None,
         commit: bool = True,
     ) -> MovimientoFisico:
+        self.stock_service.bloquear_stock_operacion(
+            lote_id,
+            pileta_origen_id=pileta_origen_id,
+            pileta_destino_id=pileta_destino_id,
+        )
         self._validar_movimiento(
             operacion_productiva_id=operacion_productiva_id,
             lote_id=lote_id,
@@ -112,10 +117,13 @@ class MovimientoFisicoService:
             raise NotFoundError("Lote no encontrado.")
         if self.usuario_repository.get_by_id(responsable_id) is None:
             raise NotFoundError("Usuario responsable no encontrado.")
+        pileta_destino = None
         if pileta_origen_id is not None and self.pileta_repository.get_by_id(pileta_origen_id) is None:
             raise NotFoundError("Pileta origen no encontrada.")
-        if pileta_destino_id is not None and self.pileta_repository.get_by_id(pileta_destino_id) is None:
-            raise NotFoundError("Pileta destino no encontrada.")
+        if pileta_destino_id is not None:
+            pileta_destino = self.pileta_repository.get_by_id(pileta_destino_id)
+            if pileta_destino is None:
+                raise NotFoundError("Pileta destino no encontrada.")
 
         if pileta_origen_id is not None:
             stock_disponible = self.stock_service.validar_stock_disponible(
@@ -125,3 +133,10 @@ class MovimientoFisicoService:
             )
             if not stock_disponible:
                 raise BusinessRuleError("Stock insuficiente en la pileta origen.")
+
+        if pileta_destino_id is not None and pileta_destino is not None:
+            stock_destino = self.stock_service.calcular_stock_actual_por_pileta(
+                pileta_destino_id
+            )
+            if stock_destino + litros > pileta_destino.capacidad_litros:
+                raise BusinessRuleError("La pileta destino supera su capacidad maxima.")

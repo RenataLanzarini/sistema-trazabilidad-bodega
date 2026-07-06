@@ -173,6 +173,7 @@ class FraccionamientoService:
                 consumos_por_stock.get(clave_stock, Decimal("0")) + litros_consumidos
             )
 
+        self.stock_service.bloquear_consumos(list(consumos_por_stock))
         for (lote_id, pileta_id), litros_consumidos in consumos_por_stock.items():
             if not self.stock_service.validar_stock_disponible(
                 lote_id,

@@ -173,6 +173,7 @@ class VentaGranelService:
                 consumos_por_stock.get(clave_stock, Decimal("0")) + litros
             )
 
+        self.stock_service.bloquear_consumos(list(consumos_por_stock))
         for (lote_id, pileta_id), litros in consumos_por_stock.items():
             if not self.stock_service.validar_stock_disponible(
                 lote_id,
