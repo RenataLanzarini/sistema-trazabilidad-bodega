@@ -3,6 +3,8 @@ from app.models.bodega import Bodega
 from app.models.calificacion_vino import CalificacionVino
 from app.models.causa_merma import CausaMerma
 from app.models.cliente import Cliente
+from app.models.corte_teorico import CorteTeorico
+from app.models.corte_teorico_detalle import CorteTeoricoDetalle
 from app.models.deposito import Deposito
 from app.models.estado_pileta import EstadoPileta
 from app.models.estado_lote import EstadoLote
@@ -34,6 +36,8 @@ __all__ = [
     "CalificacionVino",
     "CausaMerma",
     "Cliente",
+    "CorteTeorico",
+    "CorteTeoricoDetalle",
     "Deposito",
     "EstadoPileta",
     "EstadoLote",

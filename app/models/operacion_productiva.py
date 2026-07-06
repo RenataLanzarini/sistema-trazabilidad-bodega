@@ -62,3 +62,6 @@ class OperacionProductiva(Base):
     ordenes_trabajo: Mapped[list["OrdenTrabajo"]] = relationship(
         back_populates="operacion_productiva"
     )
+    cortes_teoricos: Mapped[list["CorteTeorico"]] = relationship(
+        back_populates="operacion_productiva"
+    )

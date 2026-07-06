@@ -49,3 +49,4 @@ class Usuario(Base):
     )
     ventas_granel: Mapped[list["VentaGranel"]] = relationship(back_populates="responsable")
     ordenes_trabajo: Mapped[list["OrdenTrabajo"]] = relationship(back_populates="operario")
+    cortes_teoricos: Mapped[list["CorteTeorico"]] = relationship(back_populates="responsable")

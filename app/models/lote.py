@@ -85,3 +85,6 @@ class Lote(Base):
         back_populates="lote"
     )
     ordenes_trabajo: Mapped[list["OrdenTrabajo"]] = relationship(back_populates="lote")
+    corte_teorico_detalles: Mapped[list["CorteTeoricoDetalle"]] = relationship(
+        back_populates="lote"
+    )

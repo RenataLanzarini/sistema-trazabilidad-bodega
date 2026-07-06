@@ -78,3 +78,6 @@ class Pileta(Base):
         back_populates="pileta_destino",
         foreign_keys="OrdenTrabajo.pileta_destino_id",
     )
+    corte_teorico_detalles: Mapped[list["CorteTeoricoDetalle"]] = relationship(
+        back_populates="pileta"
+    )
