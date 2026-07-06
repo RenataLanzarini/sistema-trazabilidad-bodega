@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime, time
 from decimal import Decimal
 from typing import Any
 
@@ -81,6 +81,23 @@ class FraccionamientoService:
         except Exception:
             self.session.rollback()
             raise
+
+    def obtener_por_id(self, fraccionamiento_id: int) -> Fraccionamiento:
+        fraccionamiento = self.fraccionamiento_repository.get_by_id(fraccionamiento_id)
+        if fraccionamiento is None:
+            raise NotFoundError("Fraccionamiento no encontrado.")
+        return fraccionamiento
+
+    def listar(self) -> list[Fraccionamiento]:
+        return self.fraccionamiento_repository.list()
+
+    def listar_por_lote(self, lote_id: int) -> list[Fraccionamiento]:
+        return self.fraccionamiento_repository.list_by_lote(lote_id)
+
+    def listar_por_fecha(self, fecha: date) -> list[Fraccionamiento]:
+        fecha_desde = datetime.combine(fecha, time.min)
+        fecha_hasta = datetime.combine(fecha, time.max)
+        return self.fraccionamiento_repository.list_by_fecha(fecha_desde, fecha_hasta)
 
     def _registrar_detalle_y_movimiento(
         self,

@@ -89,6 +89,15 @@ class ProductoTerminadoService:
     ) -> list[ProductoTerminado]:
         return self.producto_repository.list_by_fecha_produccion(fecha_desde, fecha_hasta)
 
+    def obtener_por_id(self, producto_terminado_id: int) -> ProductoTerminado:
+        producto = self.producto_repository.get_by_id(producto_terminado_id)
+        if producto is None:
+            raise NotFoundError("Producto terminado no encontrado.")
+        return producto
+
+    def listar(self) -> list[ProductoTerminado]:
+        return self.producto_repository.list()
+
     def _validar_producto(
         self,
         *,
