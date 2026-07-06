@@ -78,3 +78,6 @@ class Lote(Base):
     venta_granel_detalles: Mapped[list["VentaGranelDetalle"]] = relationship(
         back_populates="lote"
     )
+    analisis_enologicos: Mapped[list["AnalisisEnologico"]] = relationship(
+        back_populates="lote"
+    )

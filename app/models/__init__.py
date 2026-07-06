@@ -1,3 +1,4 @@
+from app.models.analisis_enologico import AnalisisEnologico
 from app.models.bodega import Bodega
 from app.models.calificacion_vino import CalificacionVino
 from app.models.causa_merma import CausaMerma
@@ -26,6 +27,7 @@ from app.models.venta_granel_detalle import VentaGranelDetalle
 
 __all__ = [
     "Bodega",
+    "AnalisisEnologico",
     "CalificacionVino",
     "CausaMerma",
     "Cliente",
