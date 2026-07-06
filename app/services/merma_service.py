@@ -85,6 +85,18 @@ class MermaService:
             self.session.rollback()
             raise
 
+    def listar_por_lote(self, lote_id: int) -> list[Merma]:
+        return self.merma_repository.list_by_lote(lote_id)
+
+    def listar_por_pileta(self, pileta_id: int) -> list[Merma]:
+        return self.merma_repository.list_by_pileta(pileta_id)
+
+    def listar_por_causa(self, causa_merma_id: int) -> list[Merma]:
+        return self.merma_repository.list_by_causa(causa_merma_id)
+
+    def listar_por_operacion(self, operacion_productiva_id: int) -> list[Merma]:
+        return self.merma_repository.list_by_operacion(operacion_productiva_id)
+
     def _validar_merma(
         self,
         *,
