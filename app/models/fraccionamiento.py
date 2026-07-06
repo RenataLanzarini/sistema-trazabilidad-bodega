@@ -42,3 +42,6 @@ class Fraccionamiento(Base):
     detalles: Mapped[list["FraccionamientoDetalle"]] = relationship(
         back_populates="fraccionamiento"
     )
+    productos_terminados: Mapped[list["ProductoTerminado"]] = relationship(
+        back_populates="fraccionamiento"
+    )

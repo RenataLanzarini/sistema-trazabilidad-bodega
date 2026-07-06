@@ -28,3 +28,6 @@ class TipoProducto(Base):
     )
 
     lotes: Mapped[list["Lote"]] = relationship(back_populates="tipo_producto")
+    productos_terminados: Mapped[list["ProductoTerminado"]] = relationship(
+        back_populates="tipo_producto"
+    )

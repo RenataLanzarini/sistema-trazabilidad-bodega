@@ -12,6 +12,7 @@ from app.models.movimiento_fisico import MovimientoFisico
 from app.models.operacion_productiva import OperacionProductiva
 from app.models.origen_uva import OrigenUva
 from app.models.pileta import Pileta
+from app.models.producto_terminado import ProductoTerminado
 from app.models.recepcion_uva import RecepcionUva
 from app.models.relacion_genealogica_lote import RelacionGenealogicaLote
 from app.models.rol import Rol
@@ -35,6 +36,7 @@ __all__ = [
     "OperacionProductiva",
     "OrigenUva",
     "Pileta",
+    "ProductoTerminado",
     "RecepcionUva",
     "RelacionGenealogicaLote",
     "Rol",
