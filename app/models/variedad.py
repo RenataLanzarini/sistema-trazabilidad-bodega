@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import DateTime, String, UniqueConstraint, func
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database.base import Base
 
@@ -26,3 +26,6 @@ class Variedad(Base):
         onupdate=func.now(),
         nullable=False,
     )
+
+    recepciones_uva: Mapped[list["RecepcionUva"]] = relationship(back_populates="variedad")
+    lotes: Mapped[list["Lote"]] = relationship(back_populates="variedad_principal")

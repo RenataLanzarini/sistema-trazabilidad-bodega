@@ -4,8 +4,10 @@ from app.models.cliente import Cliente
 from app.models.deposito import Deposito
 from app.models.estado_pileta import EstadoPileta
 from app.models.estado_lote import EstadoLote
+from app.models.lote import Lote
 from app.models.origen_uva import OrigenUva
 from app.models.pileta import Pileta
+from app.models.recepcion_uva import RecepcionUva
 from app.models.rol import Rol
 from app.models.tipo_operacion import TipoOperacion
 from app.models.tipo_producto import TipoProducto
@@ -19,8 +21,10 @@ __all__ = [
     "Deposito",
     "EstadoPileta",
     "EstadoLote",
+    "Lote",
     "OrigenUva",
     "Pileta",
+    "RecepcionUva",
     "Rol",
     "TipoOperacion",
     "TipoProducto",

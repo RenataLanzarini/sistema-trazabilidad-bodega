@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import CheckConstraint, DateTime, String, UniqueConstraint, func
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database.base import Base
 
@@ -32,3 +32,5 @@ class OrigenUva(Base):
         onupdate=func.now(),
         nullable=False,
     )
+
+    recepciones_uva: Mapped[list["RecepcionUva"]] = relationship(back_populates="origen_uva")

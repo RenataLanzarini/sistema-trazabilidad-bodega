@@ -35,3 +35,5 @@ class Bodega(Base):
     depositos: Mapped[list["Deposito"]] = relationship(back_populates="bodega")
     usuarios: Mapped[list["Usuario"]] = relationship(back_populates="bodega")
     piletas: Mapped[list["Pileta"]] = relationship(back_populates="bodega")
+    recepciones_uva: Mapped[list["RecepcionUva"]] = relationship(back_populates="bodega")
+    lotes: Mapped[list["Lote"]] = relationship(back_populates="bodega")
