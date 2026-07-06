@@ -10,6 +10,7 @@ from app.api.routes.v1 import (
     mediciones_fermentacion,
     movimientos_fisicos,
     operaciones_productivas,
+    ordenes_trabajo,
     piletas,
     productos_terminados,
     recepciones_uva,
@@ -23,6 +24,7 @@ router = APIRouter()
 router.include_router(health.router)
 router.include_router(analisis_enologicos.router)
 router.include_router(mediciones_fermentacion.router)
+router.include_router(ordenes_trabajo.router)
 router.include_router(catalogos.router)
 router.include_router(recepciones_uva.router)
 router.include_router(lotes.router)

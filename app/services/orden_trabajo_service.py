@@ -108,6 +108,9 @@ class OrdenTrabajoService:
             raise NotFoundError("Orden de trabajo no encontrada.")
         return orden
 
+    def listar(self) -> list[OrdenTrabajo]:
+        return self.orden_repository.list()
+
     def listar_pendientes(self) -> list[OrdenTrabajo]:
         return self.orden_repository.list_pendientes()
 
