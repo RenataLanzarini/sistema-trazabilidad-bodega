@@ -10,6 +10,11 @@ from app.repositories.base import BaseRepository
 class CorteTeoricoRepository(BaseRepository[CorteTeorico]):
     model = CorteTeorico
 
+    def add_detalle(self, detalle: CorteTeoricoDetalle) -> CorteTeoricoDetalle:
+        self.session.add(detalle)
+        self.session.flush()
+        return detalle
+
     def list_by_fecha(
         self,
         fecha_desde: date,
