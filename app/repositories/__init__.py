@@ -6,6 +6,14 @@ from app.repositories.cliente_repository import ClienteRepository
 from app.repositories.deposito_repository import DepositoRepository
 from app.repositories.estado_lote_repository import EstadoLoteRepository
 from app.repositories.estado_pileta_repository import EstadoPiletaRepository
+from app.repositories.lote_repository import LoteRepository
+from app.repositories.movimiento_fisico_repository import MovimientoFisicoRepository
+from app.repositories.operacion_productiva_repository import OperacionProductivaRepository
+from app.repositories.pileta_repository import PiletaRepository
+from app.repositories.recepcion_uva_repository import RecepcionUvaRepository
+from app.repositories.relacion_genealogica_lote_repository import (
+    RelacionGenealogicaLoteRepository,
+)
 from app.repositories.rol_repository import RolRepository
 from app.repositories.tarea_orden_trabajo_repository import TareaOrdenTrabajoRepository
 from app.repositories.tipo_operacion_repository import TipoOperacionRepository
@@ -22,6 +30,12 @@ __all__ = [
     "DepositoRepository",
     "EstadoLoteRepository",
     "EstadoPiletaRepository",
+    "LoteRepository",
+    "MovimientoFisicoRepository",
+    "OperacionProductivaRepository",
+    "PiletaRepository",
+    "RecepcionUvaRepository",
+    "RelacionGenealogicaLoteRepository",
     "RolRepository",
     "TareaOrdenTrabajoRepository",
     "TipoOperacionRepository",
