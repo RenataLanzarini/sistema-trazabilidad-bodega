@@ -52,3 +52,11 @@ class Lote(Base):
     recepcion_uva: Mapped["RecepcionUva | None"] = relationship(back_populates="lotes")
     variedad_principal: Mapped["Variedad | None"] = relationship(back_populates="lotes")
     movimientos_fisicos: Mapped[list["MovimientoFisico"]] = relationship(back_populates="lote")
+    relaciones_como_padre: Mapped[list["RelacionGenealogicaLote"]] = relationship(
+        back_populates="lote_padre",
+        foreign_keys="RelacionGenealogicaLote.lote_padre_id",
+    )
+    relaciones_como_hijo: Mapped[list["RelacionGenealogicaLote"]] = relationship(
+        back_populates="lote_hijo",
+        foreign_keys="RelacionGenealogicaLote.lote_hijo_id",
+    )

@@ -47,3 +47,6 @@ class OperacionProductiva(Base):
     movimientos_fisicos: Mapped[list["MovimientoFisico"]] = relationship(
         back_populates="operacion_productiva"
     )
+    relaciones_genealogicas: Mapped[list["RelacionGenealogicaLote"]] = relationship(
+        back_populates="operacion_productiva"
+    )
