@@ -24,6 +24,9 @@ class RecepcionUva(Base):
         Index("ix_recepciones_uva_variedad_id", "variedad_id"),
         Index("ix_recepciones_uva_responsable_id", "responsable_id"),
         Index("ix_recepciones_uva_fecha", "fecha"),
+        Index("ix_recepciones_uva_finca", "finca"),
+        Index("ix_recepciones_uva_inv", "inv"),
+        Index("ix_recepciones_uva_patente", "patente"),
     )
 
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -36,6 +39,26 @@ class RecepcionUva(Base):
     cosecha: Mapped[int] = mapped_column(nullable=False)
     kilos_recibidos: Mapped[Decimal] = mapped_column(Numeric(12, 2), nullable=False)
     estado: Mapped[str] = mapped_column(String(50), nullable=False)
+    semana: Mapped[int | None] = mapped_column(nullable=True)
+    rto: Mapped[Decimal | None] = mapped_column(Numeric(12, 2), nullable=True)
+    finca: Mapped[str | None] = mapped_column(String(150), nullable=True)
+    inv: Mapped[str | None] = mapped_column(String(80), nullable=True)
+    cambio: Mapped[str | None] = mapped_column(String(80), nullable=True)
+    cuartel: Mapped[str | None] = mapped_column(String(80), nullable=True)
+    tachos: Mapped[int | None] = mapped_column(nullable=True)
+    chofer: Mapped[str | None] = mapped_column(String(120), nullable=True)
+    cuit_cuil: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    camion: Mapped[str | None] = mapped_column(String(120), nullable=True)
+    modelo: Mapped[str | None] = mapped_column(String(120), nullable=True)
+    patente: Mapped[str | None] = mapped_column(String(50), nullable=True)
+    bruto_kg: Mapped[Decimal | None] = mapped_column(Numeric(12, 2), nullable=True)
+    tara_kg: Mapped[Decimal | None] = mapped_column(Numeric(12, 2), nullable=True)
+    neto_kg: Mapped[Decimal | None] = mapped_column(Numeric(12, 2), nullable=True)
+    uva_real_kg: Mapped[Decimal | None] = mapped_column(Numeric(12, 2), nullable=True)
+    destino_vino: Mapped[str | None] = mapped_column(String(120), nullable=True)
+    brix_real: Mapped[Decimal | None] = mapped_column(Numeric(6, 2), nullable=True)
+    tenor_azucar: Mapped[Decimal | None] = mapped_column(Numeric(6, 2), nullable=True)
+    vasija: Mapped[str | None] = mapped_column(String(80), nullable=True)
     observaciones: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     created_at: Mapped[datetime] = mapped_column(

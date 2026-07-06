@@ -15,6 +15,7 @@ class OperacionProductiva(Base):
         Index("ix_operaciones_productivas_tipo_operacion_id", "tipo_operacion_id"),
         Index("ix_operaciones_productivas_responsable_id", "responsable_id"),
         Index("ix_operaciones_productivas_fecha", "fecha"),
+        Index("ix_operaciones_productivas_codigo_externo", "codigo_externo"),
     )
 
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -23,6 +24,7 @@ class OperacionProductiva(Base):
         ForeignKey("tipos_operacion.id"), nullable=False
     )
     responsable_id: Mapped[int] = mapped_column(ForeignKey("usuarios.id"), nullable=False)
+    codigo_externo: Mapped[str | None] = mapped_column(String(80), nullable=True)
     fecha: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     estado: Mapped[str] = mapped_column(String(50), nullable=False)
     anulada: Mapped[bool] = mapped_column(default=False, nullable=False)

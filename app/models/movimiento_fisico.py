@@ -19,6 +19,7 @@ class MovimientoFisico(Base):
         Index("ix_movimientos_fisicos_pileta_destino_id", "pileta_destino_id"),
         Index("ix_movimientos_fisicos_responsable_id", "responsable_id"),
         Index("ix_movimientos_fisicos_fecha", "fecha"),
+        Index("ix_movimientos_fisicos_codigo_externo", "codigo_externo"),
     )
 
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -29,6 +30,7 @@ class MovimientoFisico(Base):
     pileta_origen_id: Mapped[int | None] = mapped_column(ForeignKey("piletas.id"), nullable=True)
     pileta_destino_id: Mapped[int | None] = mapped_column(ForeignKey("piletas.id"), nullable=True)
     responsable_id: Mapped[int] = mapped_column(ForeignKey("usuarios.id"), nullable=False)
+    codigo_externo: Mapped[str | None] = mapped_column(String(80), nullable=True)
     fecha: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     litros: Mapped[Decimal] = mapped_column(Numeric(12, 2), nullable=False)
     estado: Mapped[str] = mapped_column(String(50), nullable=False)

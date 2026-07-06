@@ -17,6 +17,7 @@ class Lote(Base):
         Index("ix_lotes_tipo_producto_id", "tipo_producto_id"),
         Index("ix_lotes_estado_lote_id", "estado_lote_id"),
         Index("ix_lotes_variedad_principal_id", "variedad_principal_id"),
+        Index("ix_lotes_calificacion_vino_id", "calificacion_vino_id"),
         Index("ix_lotes_fecha_nacimiento", "fecha_nacimiento"),
     )
 
@@ -30,9 +31,13 @@ class Lote(Base):
     variedad_principal_id: Mapped[int | None] = mapped_column(
         ForeignKey("variedades.id"), nullable=True
     )
+    calificacion_vino_id: Mapped[int | None] = mapped_column(
+        ForeignKey("calificaciones_vino.id"), nullable=True
+    )
     codigo: Mapped[str] = mapped_column(String(80), nullable=False)
     fecha_nacimiento: Mapped[date] = mapped_column(Date, nullable=False)
     cosecha: Mapped[int | None] = mapped_column(nullable=True)
+    color: Mapped[str | None] = mapped_column(String(50), nullable=True)
     observaciones: Mapped[str | None] = mapped_column(Text, nullable=True)
     activo: Mapped[bool] = mapped_column(default=True, nullable=False)
 
@@ -51,6 +56,9 @@ class Lote(Base):
     estado_lote: Mapped["EstadoLote"] = relationship(back_populates="lotes")
     recepcion_uva: Mapped["RecepcionUva | None"] = relationship(back_populates="lotes")
     variedad_principal: Mapped["Variedad | None"] = relationship(back_populates="lotes")
+    calificacion_vino: Mapped["CalificacionVino | None"] = relationship(
+        back_populates="lotes"
+    )
     movimientos_fisicos: Mapped[list["MovimientoFisico"]] = relationship(back_populates="lote")
     relaciones_como_padre: Mapped[list["RelacionGenealogicaLote"]] = relationship(
         back_populates="lote_padre",
