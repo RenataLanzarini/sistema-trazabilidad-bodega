@@ -5,6 +5,7 @@ from app.services.operacion_productiva_service import OperacionProductivaService
 from app.services.producto_terminado_service import ProductoTerminadoService
 from app.services.stock_service import StockService
 from app.services.trazabilidad_service import TrazabilidadService
+from app.services.venta_granel_service import VentaGranelService
 
 __all__ = [
     "FraccionamientoService",
@@ -14,4 +15,5 @@ __all__ = [
     "ProductoTerminadoService",
     "StockService",
     "TrazabilidadService",
+    "VentaGranelService",
 ]

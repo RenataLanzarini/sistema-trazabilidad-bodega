@@ -10,6 +10,11 @@ from app.repositories.base import BaseRepository
 class VentaGranelRepository(BaseRepository[VentaGranel]):
     model = VentaGranel
 
+    def add_detalle(self, detalle: VentaGranelDetalle) -> VentaGranelDetalle:
+        self.session.add(detalle)
+        self.session.flush()
+        return detalle
+
     def list_by_cliente(self, cliente_id: int) -> list[VentaGranel]:
         statement = select(self.model).where(self.model.cliente_id == cliente_id)
         return list(self.session.scalars(statement))
