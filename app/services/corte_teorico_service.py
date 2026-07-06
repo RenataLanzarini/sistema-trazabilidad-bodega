@@ -65,6 +65,15 @@ class CorteTeoricoService:
             self.session.rollback()
             raise
 
+    def listar(self) -> list[CorteTeorico]:
+        return self.corte_repository.list()
+
+    def obtener_por_id(self, corte_teorico_id: int) -> CorteTeorico:
+        corte = self.corte_repository.get_by_id(corte_teorico_id)
+        if corte is None:
+            raise NotFoundError("Corte teorico no encontrado.")
+        return corte
+
     def obtener_detalles_por_corte(
         self,
         corte_teorico_id: int,
