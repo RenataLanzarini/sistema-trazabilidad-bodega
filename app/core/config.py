@@ -21,6 +21,7 @@ class Settings(BaseSettings):
     test_database_url: str | None = None
 
     secret_key: str = Field(default="change-me-in-production", min_length=16)
+    algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
     refresh_token_expire_days: int = 7
 
