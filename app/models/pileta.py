@@ -43,3 +43,11 @@ class Pileta(Base):
     bodega: Mapped["Bodega"] = relationship(back_populates="piletas")
     deposito: Mapped["Deposito"] = relationship(back_populates="piletas")
     estado: Mapped["EstadoPileta"] = relationship(back_populates="piletas")
+    movimientos_origen: Mapped[list["MovimientoFisico"]] = relationship(
+        back_populates="pileta_origen",
+        foreign_keys="MovimientoFisico.pileta_origen_id",
+    )
+    movimientos_destino: Mapped[list["MovimientoFisico"]] = relationship(
+        back_populates="pileta_destino",
+        foreign_keys="MovimientoFisico.pileta_destino_id",
+    )

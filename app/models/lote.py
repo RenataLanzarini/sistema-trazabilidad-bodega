@@ -51,3 +51,4 @@ class Lote(Base):
     estado_lote: Mapped["EstadoLote"] = relationship(back_populates="lotes")
     recepcion_uva: Mapped["RecepcionUva | None"] = relationship(back_populates="lotes")
     variedad_principal: Mapped["Variedad | None"] = relationship(back_populates="lotes")
+    movimientos_fisicos: Mapped[list["MovimientoFisico"]] = relationship(back_populates="lote")

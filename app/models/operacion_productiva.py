@@ -44,3 +44,6 @@ class OperacionProductiva(Base):
         back_populates="operaciones_productivas"
     )
     responsable: Mapped["Usuario"] = relationship(back_populates="operaciones_productivas")
+    movimientos_fisicos: Mapped[list["MovimientoFisico"]] = relationship(
+        back_populates="operacion_productiva"
+    )
