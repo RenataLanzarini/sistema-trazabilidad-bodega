@@ -43,3 +43,4 @@ class Usuario(Base):
     movimientos_fisicos: Mapped[list["MovimientoFisico"]] = relationship(
         back_populates="responsable"
     )
+    mermas: Mapped[list["Merma"]] = relationship(back_populates="responsable")

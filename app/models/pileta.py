@@ -51,3 +51,4 @@ class Pileta(Base):
         back_populates="pileta_destino",
         foreign_keys="MovimientoFisico.pileta_destino_id",
     )
+    mermas: Mapped[list["Merma"]] = relationship(back_populates="pileta")

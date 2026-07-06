@@ -60,3 +60,4 @@ class Lote(Base):
         back_populates="lote_hijo",
         foreign_keys="RelacionGenealogicaLote.lote_hijo_id",
     )
+    mermas: Mapped[list["Merma"]] = relationship(back_populates="lote")

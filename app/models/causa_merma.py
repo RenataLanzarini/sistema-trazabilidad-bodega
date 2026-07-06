@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import DateTime, String, UniqueConstraint, func
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database.base import Base
 
@@ -26,3 +26,5 @@ class CausaMerma(Base):
         onupdate=func.now(),
         nullable=False,
     )
+
+    mermas: Mapped[list["Merma"]] = relationship(back_populates="causa_merma")
