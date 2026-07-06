@@ -47,3 +47,4 @@ class Usuario(Base):
     fraccionamientos: Mapped[list["Fraccionamiento"]] = relationship(
         back_populates="responsable"
     )
+    ventas_granel: Mapped[list["VentaGranel"]] = relationship(back_populates="responsable")

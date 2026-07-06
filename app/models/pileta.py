@@ -55,3 +55,6 @@ class Pileta(Base):
     fraccionamiento_detalles: Mapped[list["FraccionamientoDetalle"]] = relationship(
         back_populates="pileta"
     )
+    venta_granel_detalles: Mapped[list["VentaGranelDetalle"]] = relationship(
+        back_populates="pileta"
+    )

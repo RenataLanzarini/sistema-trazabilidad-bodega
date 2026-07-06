@@ -20,6 +20,8 @@ from app.models.tipo_operacion import TipoOperacion
 from app.models.tipo_producto import TipoProducto
 from app.models.usuario import Usuario
 from app.models.variedad import Variedad
+from app.models.venta_granel import VentaGranel
+from app.models.venta_granel_detalle import VentaGranelDetalle
 
 __all__ = [
     "Bodega",
@@ -44,4 +46,6 @@ __all__ = [
     "TipoProducto",
     "Usuario",
     "Variedad",
+    "VentaGranel",
+    "VentaGranelDetalle",
 ]
