@@ -3,6 +3,7 @@ from app.services.fraccionamiento_service import FraccionamientoService
 from app.services.corte_teorico_service import CorteTeoricoService
 from app.services.lote_service import LoteService
 from app.services.merma_service import MermaService
+from app.services.medicion_fermentacion_service import MedicionFermentacionService
 from app.services.movimiento_fisico_service import MovimientoFisicoService
 from app.services.operacion_productiva_service import OperacionProductivaService
 from app.services.orden_trabajo_service import OrdenTrabajoService
@@ -19,6 +20,7 @@ __all__ = [
     "FraccionamientoService",
     "LoteService",
     "MermaService",
+    "MedicionFermentacionService",
     "MovimientoFisicoService",
     "OperacionProductivaService",
     "OrdenTrabajoService",

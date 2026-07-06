@@ -7,6 +7,7 @@ from app.api.routes.v1 import (
     health,
     lotes,
     mermas,
+    mediciones_fermentacion,
     movimientos_fisicos,
     operaciones_productivas,
     piletas,
@@ -21,6 +22,7 @@ from app.api.routes.v1 import (
 router = APIRouter()
 router.include_router(health.router)
 router.include_router(analisis_enologicos.router)
+router.include_router(mediciones_fermentacion.router)
 router.include_router(catalogos.router)
 router.include_router(recepciones_uva.router)
 router.include_router(lotes.router)
