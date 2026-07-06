@@ -10,6 +10,11 @@ from app.repositories.base import BaseRepository
 class FraccionamientoRepository(BaseRepository[Fraccionamiento]):
     model = Fraccionamiento
 
+    def add_detalle(self, detalle: FraccionamientoDetalle) -> FraccionamientoDetalle:
+        self.session.add(detalle)
+        self.session.flush()
+        return detalle
+
     def list_by_fecha(
         self,
         fecha_desde: datetime,

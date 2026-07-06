@@ -38,6 +38,7 @@ class MovimientoFisicoService:
         pileta_destino_id: int | None = None,
         codigo_externo: str | None = None,
         observaciones: str | None = None,
+        commit: bool = True,
     ) -> MovimientoFisico:
         self._validar_movimiento(
             operacion_productiva_id=operacion_productiva_id,
@@ -64,11 +65,13 @@ class MovimientoFisicoService:
 
         try:
             movimiento = self.movimiento_repository.add(movimiento)
-            self.session.commit()
-            self.session.refresh(movimiento)
+            if commit:
+                self.session.commit()
+                self.session.refresh(movimiento)
             return movimiento
         except Exception:
-            self.session.rollback()
+            if commit:
+                self.session.rollback()
             raise
 
     def obtener_movimientos_por_lote(self, lote_id: int) -> list[MovimientoFisico]:
