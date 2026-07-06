@@ -37,3 +37,6 @@ class Usuario(Base):
     bodega: Mapped["Bodega"] = relationship(back_populates="usuarios")
     rol: Mapped["Rol"] = relationship(back_populates="usuarios")
     recepciones_uva: Mapped[list["RecepcionUva"]] = relationship(back_populates="responsable")
+    operaciones_productivas: Mapped[list["OperacionProductiva"]] = relationship(
+        back_populates="responsable"
+    )

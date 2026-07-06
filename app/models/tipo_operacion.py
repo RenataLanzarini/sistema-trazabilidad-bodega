@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from sqlalchemy import DateTime, String, UniqueConstraint, func
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database.base import Base
 
@@ -25,4 +25,8 @@ class TipoOperacion(Base):
         server_default=func.now(),
         onupdate=func.now(),
         nullable=False,
+    )
+
+    operaciones_productivas: Mapped[list["OperacionProductiva"]] = relationship(
+        back_populates="tipo_operacion"
     )

@@ -5,6 +5,7 @@ from app.models.deposito import Deposito
 from app.models.estado_pileta import EstadoPileta
 from app.models.estado_lote import EstadoLote
 from app.models.lote import Lote
+from app.models.operacion_productiva import OperacionProductiva
 from app.models.origen_uva import OrigenUva
 from app.models.pileta import Pileta
 from app.models.recepcion_uva import RecepcionUva
@@ -22,6 +23,7 @@ __all__ = [
     "EstadoPileta",
     "EstadoLote",
     "Lote",
+    "OperacionProductiva",
     "OrigenUva",
     "Pileta",
     "RecepcionUva",

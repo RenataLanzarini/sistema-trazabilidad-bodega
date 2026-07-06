@@ -37,3 +37,6 @@ class Bodega(Base):
     piletas: Mapped[list["Pileta"]] = relationship(back_populates="bodega")
     recepciones_uva: Mapped[list["RecepcionUva"]] = relationship(back_populates="bodega")
     lotes: Mapped[list["Lote"]] = relationship(back_populates="bodega")
+    operaciones_productivas: Mapped[list["OperacionProductiva"]] = relationship(
+        back_populates="bodega"
+    )
