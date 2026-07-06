@@ -1,16 +1,20 @@
 from app.repositories.base import BaseRepository
+from app.repositories.analisis_enologico_repository import AnalisisEnologicoRepository
 from app.repositories.bodega_repository import BodegaRepository
 from app.repositories.calificacion_vino_repository import CalificacionVinoRepository
 from app.repositories.causa_merma_repository import CausaMermaRepository
 from app.repositories.cliente_repository import ClienteRepository
+from app.repositories.corte_teorico_repository import CorteTeoricoRepository
 from app.repositories.deposito_repository import DepositoRepository
 from app.repositories.estado_lote_repository import EstadoLoteRepository
 from app.repositories.estado_pileta_repository import EstadoPiletaRepository
 from app.repositories.fraccionamiento_repository import FraccionamientoRepository
 from app.repositories.lote_repository import LoteRepository
+from app.repositories.medicion_fermentacion_repository import MedicionFermentacionRepository
 from app.repositories.merma_repository import MermaRepository
 from app.repositories.movimiento_fisico_repository import MovimientoFisicoRepository
 from app.repositories.operacion_productiva_repository import OperacionProductivaRepository
+from app.repositories.orden_trabajo_repository import OrdenTrabajoRepository
 from app.repositories.pileta_repository import PiletaRepository
 from app.repositories.producto_terminado_repository import ProductoTerminadoRepository
 from app.repositories.recepcion_uva_repository import RecepcionUvaRepository
@@ -27,18 +31,22 @@ from app.repositories.venta_granel_repository import VentaGranelRepository
 
 __all__ = [
     "BaseRepository",
+    "AnalisisEnologicoRepository",
     "BodegaRepository",
     "CalificacionVinoRepository",
     "CausaMermaRepository",
     "ClienteRepository",
+    "CorteTeoricoRepository",
     "DepositoRepository",
     "EstadoLoteRepository",
     "EstadoPiletaRepository",
     "FraccionamientoRepository",
     "LoteRepository",
+    "MedicionFermentacionRepository",
     "MermaRepository",
     "MovimientoFisicoRepository",
     "OperacionProductivaRepository",
+    "OrdenTrabajoRepository",
     "PiletaRepository",
     "ProductoTerminadoRepository",
     "RecepcionUvaRepository",
