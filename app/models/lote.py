@@ -84,3 +84,4 @@ class Lote(Base):
     mediciones_fermentacion: Mapped[list["MedicionFermentacion"]] = relationship(
         back_populates="lote"
     )
+    ordenes_trabajo: Mapped[list["OrdenTrabajo"]] = relationship(back_populates="lote")

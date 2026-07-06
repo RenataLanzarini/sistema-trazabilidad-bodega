@@ -66,3 +66,15 @@ class Pileta(Base):
     mediciones_fermentacion: Mapped[list["MedicionFermentacion"]] = relationship(
         back_populates="pileta"
     )
+    ordenes_trabajo: Mapped[list["OrdenTrabajo"]] = relationship(
+        back_populates="pileta",
+        foreign_keys="OrdenTrabajo.pileta_id",
+    )
+    ordenes_trabajo_origen: Mapped[list["OrdenTrabajo"]] = relationship(
+        back_populates="pileta_origen",
+        foreign_keys="OrdenTrabajo.pileta_origen_id",
+    )
+    ordenes_trabajo_destino: Mapped[list["OrdenTrabajo"]] = relationship(
+        back_populates="pileta_destino",
+        foreign_keys="OrdenTrabajo.pileta_destino_id",
+    )

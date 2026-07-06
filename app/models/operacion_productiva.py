@@ -59,3 +59,6 @@ class OperacionProductiva(Base):
     ventas_granel: Mapped[list["VentaGranel"]] = relationship(
         back_populates="operacion_productiva"
     )
+    ordenes_trabajo: Mapped[list["OrdenTrabajo"]] = relationship(
+        back_populates="operacion_productiva"
+    )

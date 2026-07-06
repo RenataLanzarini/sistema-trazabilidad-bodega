@@ -13,6 +13,7 @@ from app.models.medicion_fermentacion import MedicionFermentacion
 from app.models.merma import Merma
 from app.models.movimiento_fisico import MovimientoFisico
 from app.models.operacion_productiva import OperacionProductiva
+from app.models.orden_trabajo import OrdenTrabajo
 from app.models.origen_uva import OrigenUva
 from app.models.pileta import Pileta
 from app.models.producto_terminado import ProductoTerminado
@@ -43,6 +44,7 @@ __all__ = [
     "Merma",
     "MovimientoFisico",
     "OperacionProductiva",
+    "OrdenTrabajo",
     "OrigenUva",
     "Pileta",
     "ProductoTerminado",
