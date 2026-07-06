@@ -1,3 +1,4 @@
+from app.services.analisis_enologico_service import AnalisisEnologicoService
 from app.services.fraccionamiento_service import FraccionamientoService
 from app.services.corte_teorico_service import CorteTeoricoService
 from app.services.lote_service import LoteService
@@ -13,6 +14,7 @@ from app.services.trazabilidad_service import TrazabilidadService
 from app.services.venta_granel_service import VentaGranelService
 
 __all__ = [
+    "AnalisisEnologicoService",
     "CorteTeoricoService",
     "FraccionamientoService",
     "LoteService",
