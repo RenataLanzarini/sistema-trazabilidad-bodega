@@ -19,8 +19,10 @@ class AuthService:
         if not usuario.activo:
             raise UnauthorizedError("Usuario inactivo.")
 
-        password_hash = self._get_password_hash(usuario)
-        if password_hash is None or not verify_password(password, password_hash):
+        if usuario.password_hash is None or not verify_password(
+            password,
+            usuario.password_hash,
+        ):
             raise UnauthorizedError("Credenciales invalidas.")
 
         return usuario
@@ -35,10 +37,3 @@ class AuthService:
                 "bodega_id": usuario.bodega_id,
             },
         )
-
-    def _get_password_hash(self, usuario: Usuario) -> str | None:
-        for field_name in ("password_hash", "hashed_password"):
-            value = getattr(usuario, field_name, None)
-            if isinstance(value, str) and value:
-                return value
-        return None

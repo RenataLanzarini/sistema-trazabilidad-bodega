@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 
 class ORMBase(BaseModel):
@@ -48,6 +48,16 @@ class UsuarioRead(ORMBase):
     activo: bool
     created_at: datetime
     updated_at: datetime
+
+
+class UsuarioCreate(BaseModel):
+    bodega_id: int
+    rol_id: int
+    nombre: str
+    email: EmailStr
+    password: str = Field(min_length=8)
+    telefono: str | None = None
+    activo: bool = True
 
 
 class VariedadRead(ORMBase):

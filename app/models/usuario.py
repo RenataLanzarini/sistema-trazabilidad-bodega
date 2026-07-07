@@ -21,6 +21,7 @@ class Usuario(Base):
     rol_id: Mapped[int] = mapped_column(ForeignKey("roles.id"), nullable=False)
     nombre: Mapped[str] = mapped_column(String(120), nullable=False)
     email: Mapped[str] = mapped_column(String(255), nullable=False)
+    password_hash: Mapped[str | None] = mapped_column(String(255), nullable=True)
     telefono: Mapped[str | None] = mapped_column(String(50), nullable=True)
     activo: Mapped[bool] = mapped_column(default=True, nullable=False)
 
