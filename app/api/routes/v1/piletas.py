@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.api.dependencies.database import get_db
+from app.api.dependencies.security import require_roles
 from app.core.exceptions import NotFoundError
 from app.repositories.pileta_repository import PiletaRepository
 from app.schemas.pileta import PiletaCreate, PiletaRead
@@ -12,6 +13,7 @@ from app.services.pileta_service import PiletaService
 
 router = APIRouter(prefix="/piletas", tags=["piletas"])
 DbSession = Annotated[Session, Depends(get_db)]
+WRITE_ACCESS = Depends(require_roles("Administrador", "Administrador/Dueño", "Enólogo"))
 
 
 @router.get("", response_model=list[PiletaRead])
@@ -50,6 +52,6 @@ def obtener_pileta(pileta_id: int, db: DbSession) -> object:
     return pileta
 
 
-@router.post("", response_model=PiletaRead, status_code=201)
+@router.post("", response_model=PiletaRead, status_code=201, dependencies=[WRITE_ACCESS])
 def crear_pileta(data: PiletaCreate, db: DbSession) -> object:
     return PiletaService(db).crear_pileta(data)

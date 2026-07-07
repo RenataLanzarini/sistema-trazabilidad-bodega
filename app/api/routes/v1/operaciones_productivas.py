@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.api.dependencies.database import get_db
+from app.api.dependencies.security import require_roles
 from app.repositories.operacion_productiva_repository import OperacionProductivaRepository
 from app.schemas.operacion_productiva import (
     OperacionProductivaAnular,
@@ -15,6 +16,7 @@ from app.services.operacion_productiva_service import OperacionProductivaService
 
 router = APIRouter(prefix="/operaciones-productivas", tags=["operaciones-productivas"])
 DbSession = Annotated[Session, Depends(get_db)]
+WRITE_ACCESS = Depends(require_roles("Administrador", "Administrador/Dueño", "Enólogo"))
 
 
 @router.get("", response_model=list[OperacionProductivaRead])
@@ -47,7 +49,7 @@ def obtener_operacion_productiva(operacion_id: int, db: DbSession) -> object:
     return OperacionProductivaService(db).obtener_por_id(operacion_id)
 
 
-@router.post("", response_model=OperacionProductivaRead, status_code=201)
+@router.post("", response_model=OperacionProductivaRead, status_code=201, dependencies=[WRITE_ACCESS])
 def crear_operacion_productiva(
     data: OperacionProductivaCreate,
     db: DbSession,
@@ -55,7 +57,11 @@ def crear_operacion_productiva(
     return OperacionProductivaService(db).crear_operacion(**data.model_dump())
 
 
-@router.patch("/{operacion_id}/anular", response_model=OperacionProductivaRead)
+@router.patch(
+    "/{operacion_id}/anular",
+    response_model=OperacionProductivaRead,
+    dependencies=[WRITE_ACCESS],
+)
 def anular_operacion_productiva(
     operacion_id: int,
     data: OperacionProductivaAnular,

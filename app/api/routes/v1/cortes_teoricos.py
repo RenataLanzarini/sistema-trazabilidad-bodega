@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.api.dependencies.database import get_db
+from app.api.dependencies.security import require_roles
 from app.schemas.corte_teorico import (
     CorteTeoricoCreate,
     CorteTeoricoDetalleCreate,
@@ -17,9 +18,10 @@ from app.services.corte_teorico_service import CorteTeoricoService
 
 router = APIRouter(prefix="/cortes-teoricos", tags=["cortes-teoricos"])
 DbSession = Annotated[Session, Depends(get_db)]
+WRITE_ACCESS = Depends(require_roles("Administrador", "Administrador/Dueño", "Enólogo"))
 
 
-@router.post("", response_model=CorteTeoricoRead, status_code=201)
+@router.post("", response_model=CorteTeoricoRead, status_code=201, dependencies=[WRITE_ACCESS])
 def crear_corte_teorico(data: CorteTeoricoCreate, db: DbSession) -> object:
     payload = data.model_dump()
     payload["detalles"] = [detalle.model_dump() for detalle in data.detalles]
@@ -30,6 +32,7 @@ def crear_corte_teorico(data: CorteTeoricoCreate, db: DbSession) -> object:
     "/{corte_teorico_id}/detalles",
     response_model=CorteTeoricoDetalleRead,
     status_code=201,
+    dependencies=[WRITE_ACCESS],
 )
 def crear_detalle_corte_teorico(
     corte_teorico_id: int,
@@ -73,7 +76,11 @@ def obtener_corte_teorico(corte_teorico_id: int, db: DbSession) -> object:
     return CorteTeoricoService(db).obtener_por_id(corte_teorico_id)
 
 
-@router.patch("/{corte_teorico_id}/vincular-operacion", response_model=CorteTeoricoRead)
+@router.patch(
+    "/{corte_teorico_id}/vincular-operacion",
+    response_model=CorteTeoricoRead,
+    dependencies=[WRITE_ACCESS],
+)
 def vincular_operacion_productiva(
     corte_teorico_id: int,
     data: CorteTeoricoVincularOperacion,

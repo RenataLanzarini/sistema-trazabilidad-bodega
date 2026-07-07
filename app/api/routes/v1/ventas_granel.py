@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.api.dependencies.database import get_db
+from app.api.dependencies.security import require_roles
 from app.schemas.venta_granel import (
     VentaGranelCreate,
     VentaGranelDetalleRead,
@@ -15,9 +16,10 @@ from app.services.venta_granel_service import VentaGranelService
 
 router = APIRouter(prefix="/ventas-granel", tags=["ventas-granel"])
 DbSession = Annotated[Session, Depends(get_db)]
+WRITE_ACCESS = Depends(require_roles("Administrador", "Administrador/Dueño", "Enólogo"))
 
 
-@router.post("", response_model=VentaGranelRead, status_code=201)
+@router.post("", response_model=VentaGranelRead, status_code=201, dependencies=[WRITE_ACCESS])
 def crear_venta_granel(data: VentaGranelCreate, db: DbSession) -> object:
     payload = data.model_dump()
     payload["detalles"] = [detalle.model_dump() for detalle in data.detalles]

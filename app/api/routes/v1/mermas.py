@@ -4,15 +4,17 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.api.dependencies.database import get_db
+from app.api.dependencies.security import require_roles
 from app.schemas.merma import MermaCreate, MermaRead
 from app.services.merma_service import MermaService
 
 
 router = APIRouter(prefix="/mermas", tags=["mermas"])
 DbSession = Annotated[Session, Depends(get_db)]
+WRITE_ACCESS = Depends(require_roles("Administrador", "Administrador/Dueño", "Enólogo"))
 
 
-@router.post("", response_model=MermaRead, status_code=201)
+@router.post("", response_model=MermaRead, status_code=201, dependencies=[WRITE_ACCESS])
 def crear_merma(data: MermaCreate, db: DbSession) -> object:
     return MermaService(db).registrar_merma(**data.model_dump())
 

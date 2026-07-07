@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.api.dependencies.database import get_db
+from app.api.dependencies.security import require_roles
 from app.core.exceptions import NotFoundError
 from app.repositories.lote_repository import LoteRepository
 from app.schemas.lote import LoteCreate, LoteRead
@@ -12,6 +13,7 @@ from app.services.lote_service import LoteService
 
 router = APIRouter(prefix="/lotes", tags=["lotes"])
 DbSession = Annotated[Session, Depends(get_db)]
+WRITE_ACCESS = Depends(require_roles("Administrador", "Administrador/Dueño", "Enólogo"))
 
 
 @router.get("", response_model=list[LoteRead])
@@ -40,6 +42,6 @@ def obtener_lote(lote_id: int, db: DbSession) -> object:
     return lote
 
 
-@router.post("", response_model=LoteRead, status_code=201)
+@router.post("", response_model=LoteRead, status_code=201, dependencies=[WRITE_ACCESS])
 def crear_lote(data: LoteCreate, db: DbSession) -> object:
     return LoteService(db).crear_lote(data)

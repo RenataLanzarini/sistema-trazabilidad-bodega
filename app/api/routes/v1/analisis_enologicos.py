@@ -5,15 +5,17 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.api.dependencies.database import get_db
+from app.api.dependencies.security import require_roles
 from app.schemas.analisis_enologico import AnalisisEnologicoCreate, AnalisisEnologicoRead
 from app.services.analisis_enologico_service import AnalisisEnologicoService
 
 
 router = APIRouter(prefix="/analisis-enologicos", tags=["analisis-enologicos"])
 DbSession = Annotated[Session, Depends(get_db)]
+WRITE_ACCESS = Depends(require_roles("Administrador", "Administrador/Dueño", "Enólogo"))
 
 
-@router.post("", response_model=AnalisisEnologicoRead, status_code=201)
+@router.post("", response_model=AnalisisEnologicoRead, status_code=201, dependencies=[WRITE_ACCESS])
 def crear_analisis_enologico(data: AnalisisEnologicoCreate, db: DbSession) -> object:
     return AnalisisEnologicoService(db).crear_analisis(data)
 

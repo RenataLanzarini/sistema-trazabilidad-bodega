@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.api.dependencies.database import get_db
+from app.api.dependencies.security import require_roles
 from app.core.exceptions import NotFoundError
 from app.repositories.recepcion_uva_repository import RecepcionUvaRepository
 from app.schemas.recepcion_uva import RecepcionUvaCreate, RecepcionUvaRead
@@ -12,6 +13,7 @@ from app.services.recepcion_uva_service import RecepcionUvaService
 
 router = APIRouter(prefix="/recepciones-uva", tags=["recepciones-uva"])
 DbSession = Annotated[Session, Depends(get_db)]
+WRITE_ACCESS = Depends(require_roles("Administrador", "Administrador/Dueño", "Enólogo"))
 
 
 @router.get("", response_model=list[RecepcionUvaRead])
@@ -35,6 +37,6 @@ def obtener_recepcion_uva(recepcion_uva_id: int, db: DbSession) -> object:
     return recepcion
 
 
-@router.post("", response_model=RecepcionUvaRead, status_code=201)
+@router.post("", response_model=RecepcionUvaRead, status_code=201, dependencies=[WRITE_ACCESS])
 def crear_recepcion_uva(data: RecepcionUvaCreate, db: DbSession) -> object:
     return RecepcionUvaService(db).crear_recepcion(data)

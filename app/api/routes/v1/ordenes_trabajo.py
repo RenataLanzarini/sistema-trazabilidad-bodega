@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.api.dependencies.database import get_db
+from app.api.dependencies.security import require_roles
 from app.schemas.orden_trabajo import (
     OrdenTrabajoCompletar,
     OrdenTrabajoCreate,
@@ -15,9 +16,10 @@ from app.services.orden_trabajo_service import OrdenTrabajoService
 
 router = APIRouter(prefix="/ordenes-trabajo", tags=["ordenes-trabajo"])
 DbSession = Annotated[Session, Depends(get_db)]
+WRITE_ACCESS = Depends(require_roles("Administrador", "Administrador/Dueño", "Enólogo"))
 
 
-@router.post("", response_model=OrdenTrabajoRead, status_code=201)
+@router.post("", response_model=OrdenTrabajoRead, status_code=201, dependencies=[WRITE_ACCESS])
 def crear_orden_trabajo(data: OrdenTrabajoCreate, db: DbSession) -> object:
     return OrdenTrabajoService(db).crear_orden_trabajo(**data.model_dump())
 
@@ -57,7 +59,11 @@ def obtener_orden_trabajo(orden_trabajo_id: int, db: DbSession) -> object:
     return OrdenTrabajoService(db).obtener_por_id(orden_trabajo_id)
 
 
-@router.patch("/{orden_trabajo_id}/completar", response_model=OrdenTrabajoRead)
+@router.patch(
+    "/{orden_trabajo_id}/completar",
+    response_model=OrdenTrabajoRead,
+    dependencies=[WRITE_ACCESS],
+)
 def completar_orden_trabajo(
     orden_trabajo_id: int,
     data: OrdenTrabajoCompletar,
@@ -70,7 +76,11 @@ def completar_orden_trabajo(
     )
 
 
-@router.patch("/{orden_trabajo_id}/vincular-operacion", response_model=OrdenTrabajoRead)
+@router.patch(
+    "/{orden_trabajo_id}/vincular-operacion",
+    response_model=OrdenTrabajoRead,
+    dependencies=[WRITE_ACCESS],
+)
 def vincular_operacion_productiva(
     orden_trabajo_id: int,
     data: OrdenTrabajoVincularOperacion,
