@@ -29,6 +29,18 @@ Esta carpeta contiene la preparacion inicial del modelo analitico para Power BI.
 4. Definir relaciones con la tabla calendario y dimensiones.
 5. Crear medidas DAX base.
 
+## Design system
+
+La carpeta `design/` contiene la guia visual Lanzarini para construir el reporte como un producto profesional:
+
+- `design_system.md`: principios visuales, jerarquia, filtros, tablas, navegacion y paginas.
+- `componentes.md`: componentes reutilizables para menu, KPIs, graficos, tablas, grafo y alertas.
+- `paleta_colores.md`: colores de interfaz, datos y estados.
+- `layout_paginas.md`: estructura base de paginas 16:9.
+- `trazabilidad_grafo.md`: reglas visuales especificas para el grafo de trazabilidad.
+
+El archivo `theme/LanzariniTheme.json` debe importarse en Power BI Desktop desde **Vista > Temas > Examinar temas**.
+
 ## Advertencia
 
 No consumir directamente tablas transaccionales cuando exista una vista analitica equivalente. Las vistas encapsulan reglas de lectura, nombres amigables y criterios de consistencia para reporting.

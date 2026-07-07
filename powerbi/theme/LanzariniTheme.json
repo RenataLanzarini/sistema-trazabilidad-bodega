@@ -17,9 +17,9 @@
   "background": "#F8F5EF",
   "foreground": "#2D2D2D",
   "tableAccent": "#B88646",
-  "good": "#B88646",
-  "neutral": "#8C7B6B",
-  "bad": "#6B1F2A",
+  "good": "#6F7F3F",
+  "neutral": "#A89F91",
+  "bad": "#8A1F2D",
   "visualStyles": {
     "*": {
       "*": {
