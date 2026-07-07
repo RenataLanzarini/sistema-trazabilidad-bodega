@@ -2,6 +2,7 @@ from fastapi import APIRouter
 
 from app.api.routes.v1 import (
     analisis_enologicos,
+    auth,
     catalogos,
     cortes_teoricos,
     fraccionamientos,
@@ -23,6 +24,7 @@ from app.api.routes.v1 import (
 
 router = APIRouter()
 router.include_router(health.router)
+router.include_router(auth.router)
 router.include_router(analisis_enologicos.router)
 router.include_router(mediciones_fermentacion.router)
 router.include_router(ordenes_trabajo.router)
