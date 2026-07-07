@@ -1,0 +1,116 @@
+{
+  "name": "Lanzarini Theme",
+  "dataColors": [
+    "#6B1F2A",
+    "#7A263A",
+    "#4E1A24",
+    "#D8B75A",
+    "#E8DCA2",
+    "#B9A44C",
+    "#C97B84",
+    "#D9A0A7",
+    "#8C7B6B",
+    "#A89F91",
+    "#3E244A",
+    "#B88646"
+  ],
+  "background": "#F8F5EF",
+  "foreground": "#2D2D2D",
+  "tableAccent": "#B88646",
+  "good": "#B88646",
+  "neutral": "#8C7B6B",
+  "bad": "#6B1F2A",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [
+          {
+            "show": true,
+            "fontColor": {
+              "solid": {
+                "color": "#2B1E1A"
+              }
+            },
+            "background": {
+              "solid": {
+                "color": "#F8F5EF"
+              }
+            }
+          }
+        ],
+        "labels": [
+          {
+            "color": {
+              "solid": {
+                "color": "#2D2D2D"
+              }
+            }
+          }
+        ],
+        "categoryAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#6B625C"
+              }
+            }
+          }
+        ],
+        "valueAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#6B625C"
+              }
+            }
+          }
+        ],
+        "legend": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#2D2D2D"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F8F5EF"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [
+          {
+            "color": {
+              "solid": {
+                "color": "#2B1E1A"
+              }
+            }
+          }
+        ],
+        "categoryLabels": [
+          {
+            "color": {
+              "solid": {
+                "color": "#6B625C"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
